@@ -11,7 +11,7 @@ public class TelaFolhaPagamento {
 
     public static void executar(FuncionarioService service) {
 
-        int matricula = Integer.parseInt(JOptionPane.showInputDialog("Matrícula:"));
+        int matricula = lerInteiro("Matrícula:");
 
         Funcionario f = null;
 
@@ -47,5 +47,22 @@ public class TelaFolhaPagamento {
                         "\nFamília: " + fam.setScale(2, RoundingMode.HALF_UP) +
                         "\nFGTS: " + fgts.setScale(2, RoundingMode.HALF_UP) +
                         "\nLíquido: " + liquido.setScale(2, RoundingMode.HALF_UP));
+    }
+
+    private static int lerInteiro(String mensagem) {
+        while (true) {
+            String input = JOptionPane.showInputDialog(mensagem);
+
+            if (input == null || input.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Digite um valor válido!");
+                continue;
+            }
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Número inválido!");
+            }
+        }
     }
 }
