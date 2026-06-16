@@ -10,17 +10,25 @@ public class TelaListaFuncionarios {
 
     public static void executar(FuncionarioService service) {
 
-        StringBuilder resultado = new StringBuilder();
+        var lista = service.listar();
 
-        for (Funcionario f : service.listar()) {
-            resultado.append("Matrícula: ").append(f.getMatricula())
-                    .append(" | Nome: ").append(f.getNome())
-                    .append(" | Cargo: ").append(f.getCargo())
-                    .append(" | Salário: R$ ")
-                    .append(f.getSalario().setScale(2, RoundingMode.HALF_UP))
-                    .append("\n");
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum funcionário cadastrado");
+            return;
         }
 
-        JOptionPane.showMessageDialog(null, resultado.toString());
+        String resultado = "";
+
+        for (Funcionario f : lista) {
+
+            resultado += "Matrícula: " + f.getMatricula()
+                    + " | Nome: " + f.getNome()
+                    + " | Cargo: " + f.getCargo()
+                    + " | Salário: R$ "
+                    + f.getSalario().setScale(2, RoundingMode.HALF_UP)
+                    + "\n";
+        }
+
+        JOptionPane.showMessageDialog(null, resultado);
     }
 }

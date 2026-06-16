@@ -1,0 +1,14 @@
+# VSCode
+.vscode/
+
+# Java compilado
+*.class
+bin/
+out/
+target/
+
+# sistema
+.DS_Store
+
+# logs
+*.log
